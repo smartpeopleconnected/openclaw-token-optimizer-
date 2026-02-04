@@ -165,18 +165,42 @@ Copy these rules into your agent's system prompt.
 - OpenClaw installed and configured
 - Ollama (optional, for free heartbeats)
 
-### Installing Ollama
+### Installing Ollama (Automated)
+
+We provide a one-click setup script that installs Ollama, downloads the model, and configures auto-start:
+
+**Windows (PowerShell):**
+```powershell
+.\scripts\setup-ollama.ps1
+```
 
 **macOS/Linux:**
 ```bash
-curl -fsSL https://ollama.ai/install.sh | sh
-ollama pull llama3.2:3b
-ollama serve
+chmod +x scripts/setup-ollama.sh
+./scripts/setup-ollama.sh
 ```
 
-**Windows:**
-Download from [ollama.ai](https://ollama.ai) and run:
-```powershell
+**What the script does:**
+1. Checks system requirements (RAM, disk space)
+2. Installs Ollama automatically
+3. Downloads the recommended model (llama3.2:3b)
+4. Starts Ollama server
+5. Configures auto-start on boot
+6. Tests that everything works
+
+**System Requirements:**
+| Resource | Minimum | Recommended |
+|----------|---------|-------------|
+| RAM | 2 GB | 4 GB |
+| Disk | 1.5 GB | 3 GB |
+| GPU | Not required | Speeds up responses |
+
+**Manual Installation:**
+```bash
+# macOS/Linux
+curl -fsSL https://ollama.ai/install.sh | sh
+
+# Then pull model and start
 ollama pull llama3.2:3b
 ollama serve
 ```
@@ -199,7 +223,9 @@ token-optimizer/
 │   └── OPTIMIZATION-RULES.md
 └── scripts/
     ├── install.sh             # Unix installer
-    └── install.ps1            # Windows installer
+    ├── install.ps1            # Windows installer
+    ├── setup-ollama.sh        # Ollama setup (Unix)
+    └── setup-ollama.ps1       # Ollama setup (Windows)
 ```
 
 ## Troubleshooting
