@@ -1,67 +1,23 @@
 {
   "name": "token-optimizer",
-  "version": "1.0.0",
-  "description": "Reduce OpenClaw AI costs by 97% - From $1,500+/month to under $50/month",
-  "author": "TokenOptimizer",
-  "license": "Commercial",
+  "version": "1.0.2",
+  "summary": "Reduce OpenClaw AI costs by 97%. Haiku routing, free Ollama heartbeats, prompt caching, budget controls. $1,500/month → $50/month in 5 minutes.",
+  "description": "Slash your AI costs from $1,500+/month to under $50/month with four optimizations: Model routing (Haiku default), free Ollama heartbeats, session management, and prompt caching.",
+  "author": "smartpeopleconnected",
+  "license": "MIT",
   "keywords": [
     "openclaw",
     "token-optimization",
     "cost-reduction",
-    "ai-efficiency",
+    "haiku",
+    "ollama",
     "model-routing",
-    "prompt-caching"
+    "prompt-caching",
+    "budget-control"
   ],
-  "homepage": "https://github.com/tokenoptimizer/openclaw-optimizer",
+  "homepage": "https://github.com/smartpeopleconnected/openclaw-token-optimizer",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tokenoptimizer/openclaw-optimizer.git"
-  },
-  "skills": [
-    {
-      "name": "optimize",
-      "description": "Analyze and optimize your OpenClaw configuration for maximum token savings",
-      "command": "python src/optimizer.py",
-      "args": ["--mode", "full"]
-    },
-    {
-      "name": "analyze",
-      "description": "Analyze current token usage and identify optimization opportunities",
-      "command": "python src/analyzer.py"
-    },
-    {
-      "name": "setup-heartbeat",
-      "description": "Configure Ollama for free local heartbeat checks",
-      "command": "python src/optimizer.py",
-      "args": ["--mode", "heartbeat"]
-    },
-    {
-      "name": "setup-routing",
-      "description": "Configure intelligent model routing (Haiku default, Sonnet when needed)",
-      "command": "python src/optimizer.py",
-      "args": ["--mode", "routing"]
-    },
-    {
-      "name": "verify",
-      "description": "Verify optimization setup and show estimated savings",
-      "command": "python src/verify.py"
-    }
-  ],
-  "dependencies": {
-    "python": ">=3.8",
-    "ollama": "optional"
-  },
-  "pricing": {
-    "model": "one-time",
-    "price": 29.99,
-    "currency": "USD",
-    "trial": {
-      "available": true,
-      "features": ["analyze"]
-    }
-  },
-  "support": {
-    "email": "support@tokenoptimizer.ai",
-    "docs": "https://docs.tokenoptimizer.ai"
+    "url": "https://github.com/smartpeopleconnected/openclaw-token-optimizer.git"
   }
 }

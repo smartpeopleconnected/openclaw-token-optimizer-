@@ -1,3 +1,7 @@
+---
+summary: "Reduce OpenClaw AI costs by 97%. Haiku routing, free Ollama heartbeats, prompt caching, budget controls. $1,500/month → $50/month in 5 minutes."
+---
+
 # 🦞 Token Optimizer for OpenClaw
 
 Slash your AI costs from $1,500+/month to under $50/month.
