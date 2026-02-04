@@ -170,6 +170,19 @@ if (Test-OllamaInstalled) {
 
             # Refresh PATH
             $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
+            # Add common Ollama install locations to PATH for this session
+            $ollamaPaths = @(
+                "$env:LOCALAPPDATA\Programs\Ollama",
+                "$env:ProgramFiles\Ollama",
+                "$env:USERPROFILE\AppData\Local\Programs\Ollama"
+            )
+            foreach ($p in $ollamaPaths) {
+                if (Test-Path "$p\ollama.exe") {
+                    $env:Path = "$p;$env:Path"
+                    break
+                }
+            }
         } catch {
             Write-Warning "Winget installation failed. Trying direct download..."
             $wingetAvailable = $false
@@ -190,6 +203,19 @@ if (Test-OllamaInstalled) {
 
             # Refresh PATH
             $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
+            # Add common Ollama install locations to PATH for this session
+            $ollamaPaths = @(
+                "$env:LOCALAPPDATA\Programs\Ollama",
+                "$env:ProgramFiles\Ollama",
+                "$env:USERPROFILE\AppData\Local\Programs\Ollama"
+            )
+            foreach ($p in $ollamaPaths) {
+                if (Test-Path "$p\ollama.exe") {
+                    $env:Path = "$p;$env:Path"
+                    break
+                }
+            }
 
             # Clean up
             Remove-Item $installerPath -Force -ErrorAction SilentlyContinue
