@@ -1,0 +1,35 @@
+{
+  "name": "token-optimizer",
+  "version": "1.0.0",
+  "description": "Reduce OpenClaw AI costs by 97% - From $1,500+/month to under $50/month",
+  "author": {
+    "name": "Smart People Connected",
+    "github": "smartpeopleconnected",
+    "email": "smartpeopleconnected@gmail.com"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/smartpeopleconnected/openclaw-token-optimizer",
+  "repository": "https://github.com/smartpeopleconnected/openclaw-token-optimizer",
+  "keywords": [
+    "token-optimization",
+    "cost-reduction",
+    "haiku",
+    "ollama",
+    "heartbeat",
+    "model-routing",
+    "prompt-caching"
+  ],
+  "pricing": {
+    "model": "freemium",
+    "free_tier": true,
+    "premium_price": 29.99,
+    "currency": "USD",
+    "payment_link": "https://YOUR_GUMROAD_OR_PAYMENT_LINK"
+  },
+  "compatibility": {
+    "openclaw": ">=2024.1.0",
+    "platforms": ["windows", "macos", "linux"]
+  },
+  "created": "2026-02-04",
+  "updated": "2026-02-04"
+}
