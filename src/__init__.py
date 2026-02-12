@@ -3,7 +3,7 @@ Token Optimizer for OpenClaw
 Reduce AI costs by 97% through intelligent optimization.
 """
 
-__version__ = "1.0.8"
+__version__ = "1.0.9"
 __author__ = "TokenOptimizer"
 
 from .analyzer import OpenClawAnalyzer
