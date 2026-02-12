@@ -1,6 +1,6 @@
 # TOKEN OPTIMIZATION RULES
 
-Add these rules to your agent's system prompt for 97% cost reduction.
+Add these rules to your agent prompt for 97% cost reduction.
 
 ---
 

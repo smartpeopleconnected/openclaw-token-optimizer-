@@ -179,7 +179,7 @@ class OptimizationVerifier:
         return all_found and is_lean
 
     def check_prompts_exist(self) -> bool:
-        """Check system prompt files exist."""
+        """Check agent prompt files exist."""
         prompts_dir = self.openclaw_dir / 'prompts'
         optimization_rules = prompts_dir / 'OPTIMIZATION-RULES.md'
 
@@ -214,7 +214,7 @@ class OptimizationVerifier:
         # Caching savings (90% on repeated content)
         cache = config.get('agents', {}).get('defaults', {}).get('cache', {})
         if cache.get('enabled'):
-            # 5KB system prompt * 100 calls/day * 0.003/1K * 0.9 savings
+            # 5KB agent prompt * 100 calls/day * 0.003/1K * 0.9 savings
             savings['caching'] = 5 * 100 * 0.003 * 0.9 * 30  # ~$40.50/month
 
         # Session management (estimated from lean context)
@@ -269,21 +269,21 @@ class OptimizationVerifier:
         yearly_projection = savings['total'] * 12
 
         # Show benefit report
-        print(colorize("\n  ╔══════════════════════════════════════════════════╗", Colors.BOLD + Colors.GREEN))
-        print(colorize("  ║         Your Savings Report                      ║", Colors.BOLD + Colors.GREEN))
-        print(colorize("  ╠══════════════════════════════════════════════════╣", Colors.GREEN))
-        print(colorize(f"  ║  Active for: {days_active} days                              ", Colors.GREEN))
-        print(colorize(f"  ║                                                  ", Colors.GREEN))
-        print(colorize(f"  ║  Savings this week:       ~${weekly_savings:>8.2f}          ", Colors.GREEN))
-        print(colorize(f"  ║  Savings since install:   ~${total_savings:>8.2f}          ", Colors.GREEN))
-        print(colorize(f"  ║  Projected yearly:        ~${yearly_projection:>8.2f}          ", Colors.GREEN))
-        print(colorize(f"  ║                                                  ", Colors.GREEN))
-        print(colorize(f"  ║  Token Optimizer is saving you real money.       ", Colors.GREEN))
-        print(colorize(f"  ║  If it helps, consider a small thank-you:       ", Colors.GREEN))
-        print(colorize(f"  ║                                                  ", Colors.GREEN))
-        print(colorize(f"  ║  -> https://ko-fi.com/smartpeopleconnected       ", Colors.CYAN + Colors.BOLD))
-        print(colorize(f"  ║                                                  ", Colors.GREEN))
-        print(colorize("  ╚══════════════════════════════════════════════════╝", Colors.GREEN))
+        print(colorize("\n  +--------------------------------------------------+", Colors.BOLD + Colors.GREEN))
+        print(colorize("  |         Your Savings Report                      |", Colors.BOLD + Colors.GREEN))
+        print(colorize("  +--------------------------------------------------+", Colors.GREEN))
+        print(colorize(f"  |  Active for: {days_active} days                              ", Colors.GREEN))
+        print(colorize(f"  |                                                  ", Colors.GREEN))
+        print(colorize(f"  |  Savings this week:       ~${weekly_savings:>8.2f}          ", Colors.GREEN))
+        print(colorize(f"  |  Savings since install:   ~${total_savings:>8.2f}          ", Colors.GREEN))
+        print(colorize(f"  |  Projected yearly:        ~${yearly_projection:>8.2f}          ", Colors.GREEN))
+        print(colorize(f"  |                                                  ", Colors.GREEN))
+        print(colorize(f"  |  Token Optimizer is saving you real money.       ", Colors.GREEN))
+        print(colorize(f"  |  If it helps, consider a small thank-you:       ", Colors.GREEN))
+        print(colorize(f"  |                                                  ", Colors.GREEN))
+        print(colorize(f"  |  -> https://ko-fi.com/smartpeopleconnected       ", Colors.CYAN + Colors.BOLD))
+        print(colorize(f"  |                                                  ", Colors.GREEN))
+        print(colorize("  +--------------------------------------------------+", Colors.GREEN))
 
         # Update last report timestamp
         stats['last_benefit_report'] = now.isoformat()

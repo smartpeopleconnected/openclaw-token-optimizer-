@@ -2,7 +2,7 @@
 
 **Reduce your AI costs by 97% - From $1,500+/month to under $50/month**
 
-[![Version](https://img.shields.io/badge/version-1.0.10-blue.svg)](https://github.com/smartpeopleconnected/openclaw-token-optimizer)
+[![Version](https://img.shields.io/badge/version-1.0.11-blue.svg)](https://github.com/smartpeopleconnected/openclaw-token-optimizer)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![OpenClaw](https://img.shields.io/badge/OpenClaw-Compatible-purple.svg)](https://openclaw.ai)
 [![Cost Savings](https://img.shields.io/badge/savings-97%25-brightgreen.svg)](https://github.com/smartpeopleconnected/openclaw-token-optimizer)
@@ -96,7 +96,7 @@ Optimized context loading rules that reduce startup context from 50KB to 8KB:
 
 ### 4. Prompt Caching
 Automatic 90% discount on repeated content:
-- System prompts cached and reused
+- Agent prompts cached and reused
 - 5-minute TTL for optimal cache hits
 - Per-model cache configuration
 
@@ -127,7 +127,7 @@ Shows a colored unified diff of what would change, without modifying anything.
 python cli.py optimize
 ```
 
-Applies all optimizations: model routing, heartbeat, caching, rate limits, workspace templates, and system prompts.
+Applies all optimizations: model routing, heartbeat, caching, rate limits, workspace templates, and agent prompts.
 
 ### Apply Specific Optimizations
 ```bash
@@ -185,7 +185,7 @@ Agent principles and operating rules. Includes:
 Your context: name, role, mission, success metrics.
 
 ### `~/.openclaw/prompts/OPTIMIZATION-RULES.md`
-Copy these rules into your agent's system prompt.
+Copy these rules into your agent prompt.
 
 ## Requirements
 
@@ -237,35 +237,35 @@ ollama serve
 
 ```
 token-optimizer/
-├── skill.json                 # Skill manifest
-├── README.md                  # This file
-├── src/
-│   ├── __init__.py            # Version (single source of truth)
-│   ├── colors.py              # Shared ANSI colors
-│   ├── analyzer.py            # Analyzes current config
-│   ├── optimizer.py           # Applies optimizations
-│   └── verify.py              # Verifies setup
-├── templates/
-│   ├── openclaw-config-optimized.json
-│   ├── SOUL.md
-│   ├── USER.md
-│   └── OPTIMIZATION-RULES.md
-└── scripts/
-    ├── install.sh             # Unix installer
-    ├── install.ps1            # Windows installer
-    ├── setup-ollama.sh        # Ollama setup (Unix)
-    └── setup-ollama.ps1       # Ollama setup (Windows)
++-- skill.json                 # Skill manifest
++-- README.md                  # This file
++-- src/
+|   +-- __init__.py            # Version (single source of truth)
+|   +-- colors.py              # Shared ANSI colors
+|   +-- analyzer.py            # Analyzes current config
+|   +-- optimizer.py           # Applies optimizations
+|   +-- verify.py              # Verifies setup
++-- templates/
+|   +-- openclaw-config-optimized.json
+|   +-- SOUL.md
+|   +-- USER.md
+|   +-- OPTIMIZATION-RULES.md
++-- scripts/
+    +-- install.sh             # Unix installer
+    +-- install.ps1            # Windows installer
+    +-- setup-ollama.sh        # Ollama setup (Unix)
+    +-- setup-ollama.ps1       # Ollama setup (Windows)
 ```
 
 ## Troubleshooting
 
 ### Context size still large
-- Ensure SESSION INITIALIZATION RULE is in your system prompt
+- Ensure SESSION INITIALIZATION RULE is in your agent prompt
 - Check that SOUL.md and USER.md are lean (<15KB total)
 
 ### Still using Sonnet for everything
 - Verify `~/.openclaw/openclaw.json` has correct model configuration
-- Ensure MODEL SELECTION RULE is in system prompt
+- Ensure MODEL SELECTION RULE is in agent prompt
 
 ### Heartbeat errors
 - Make sure Ollama is running: `ollama serve`
@@ -273,7 +273,7 @@ token-optimizer/
 
 ### Costs haven't dropped
 - Run `python src/verify.py` to check all optimizations
-- Ensure system prompt includes all optimization rules
+- Ensure agent prompt includes all optimization rules
 
 ## Support
 

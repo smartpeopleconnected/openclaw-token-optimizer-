@@ -152,7 +152,7 @@ def calculate_costs(config: dict, workspace_size_kb: float, daily_messages: int 
     input_cost = (context_tokens / 1000) * costs['input']
     output_cost = (avg_output_tokens / 1000) * costs['output']
 
-    # Apply cache discount to input (system prompt)
+    # Apply cache discount to input (agent prompt)
     if cache_enabled:
         # First message full price, subsequent 90% off
         cached_input_cost = input_cost * (1 - cache_discount * 0.8)  # 80% of messages cached
@@ -294,10 +294,10 @@ def run_simulation():
         json.dump(optimized_config, f, indent=2)
 
     print("\n  Optimizations applied:")
-    print(colorize("    ✓ Model routing: Haiku default (92% cheaper)", Colors.GREEN))
-    print(colorize("    ✓ Heartbeat: Ollama local (100% free)", Colors.GREEN))
-    print(colorize("    ✓ Prompt caching: Enabled (90% discount)", Colors.GREEN))
-    print(colorize("    ✓ Budget controls: $5/day, $150/month", Colors.GREEN))
+    print(colorize("    [OK] Model routing: Haiku default (92% cheaper)", Colors.GREEN))
+    print(colorize("    [OK] Heartbeat: Ollama local (100% free)", Colors.GREEN))
+    print(colorize("    [OK] Prompt caching: Enabled (90% discount)", Colors.GREEN))
+    print(colorize("    [OK] Budget controls: $5/day, $150/month", Colors.GREEN))
 
     # Create lean workspace files
     lean_soul = """# SOUL.md
@@ -319,8 +319,8 @@ def run_simulation():
     with open(workspace_dir / 'USER.md', 'w') as f:
         f.write(lean_user)
 
-    print(colorize("    ✓ Workspace: Reduced from 50KB to 2KB", Colors.GREEN))
-    print(colorize("    ✓ Memory: On-demand loading only", Colors.GREEN))
+    print(colorize("    [OK] Workspace: Reduced from 50KB to 2KB", Colors.GREEN))
+    print(colorize("    [OK] Memory: On-demand loading only", Colors.GREEN))
 
     # ========== AFTER OPTIMIZATION ==========
 
@@ -339,9 +339,9 @@ def run_simulation():
 
     # ========== COMPARISON ==========
 
-    print(colorize("\n\n" + "═"*60, Colors.BOLD + Colors.CYAN))
-    print(colorize("  📊 SAVINGS SUMMARY", Colors.BOLD + Colors.CYAN))
-    print(colorize("═"*60, Colors.BOLD + Colors.CYAN))
+    print(colorize("\n\n" + "="*60, Colors.BOLD + Colors.CYAN))
+    print(colorize("  SAVINGS SUMMARY", Colors.BOLD + Colors.CYAN))
+    print(colorize("="*60, Colors.BOLD + Colors.CYAN))
 
     daily_savings = before_costs['daily_total'] - after_costs['daily_total']
     monthly_savings = before_costs['monthly_total'] - after_costs['monthly_total']
@@ -372,7 +372,7 @@ def run_simulation():
     # Cleanup
     shutil.rmtree(test_dir)
 
-    print(colorize("\n\n✅ Simulation complete! Mock environment cleaned up.", Colors.GREEN))
+    print(colorize("\n\n[OK] Simulation complete! Mock environment cleaned up.", Colors.GREEN))
     print(colorize("\nTo apply these optimizations to your real OpenClaw setup:", Colors.CYAN))
     print("    python src/optimizer.py --mode full\n")
 

@@ -231,10 +231,10 @@ class OpenClawAnalyzer:
 
             # Calculate potential savings (90% on cached content)
             daily_calls = self.ESTIMATES['avg_messages_per_day']
-            system_prompt_size = 5000  # 5KB typical
+            prompt_size = 5000  # 5KB typical
             cost_per_1k = self.COSTS['sonnet']  # caching matters most for sonnet
 
-            uncached_cost = (system_prompt_size / 1000) * cost_per_1k * daily_calls
+            uncached_cost = (prompt_size / 1000) * cost_per_1k * daily_calls
             cached_cost = uncached_cost * 0.1  # 90% discount
             result['monthly_savings'] = (uncached_cost - cached_cost) * 30
 

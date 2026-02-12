@@ -37,7 +37,7 @@ The default configuration prioritizes capability over cost - meaning you're burn
 1. **Smart Model Routing** - Haiku by default, Sonnet only when needed (92% savings)
 2. **Free Heartbeats** - Route status checks to Ollama instead of paid API (100% savings)
 3. **Lean Sessions** - Load 8KB instead of 50KB context per message (80% savings)
-4. **Prompt Caching** - 90% discount on repeated system prompts
+4. **Prompt Caching** - 90% discount on repeated agent prompts
 
 **Results our users see:**
 
@@ -52,7 +52,7 @@ The default configuration prioritizes capability over cost - meaning you're burn
 
 - Automated configuration optimizer
 - Pre-built workspace templates (SOUL.md, USER.md)
-- System prompt optimization rules
+- Optimization prompt rules
 - Ollama heartbeat setup
 - Budget and rate limit controls
 - Verification tools
@@ -124,7 +124,7 @@ The default configuration prioritizes capability over cost - meaning you're burn
 - **FIX:** Version sync (was showing 1.0.0 in 7 files)
 
 **v1.0.7** (2026-02-08) - Security & Savings Report
-- **SECURITY:** Removed agent prompt injection from SKILL.md (ClawHub review finding)
+- **SECURITY:** Removed hidden HTML comment from SKILL.md (ClawHub review finding)
 - **SECURITY:** Dry-run is now the default - use `--apply` to make changes
 - **SECURITY:** User confirmation before downloading Ollama model (~2GB)
 - **SECURITY:** Existing user config files are no longer overwritten

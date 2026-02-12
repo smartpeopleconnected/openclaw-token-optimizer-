@@ -482,8 +482,8 @@ class TokenOptimizer:
         # Generate workspace templates
         self.generate_workspace_templates()
 
-        # Generate system prompt additions
-        self.generate_system_prompts()
+        # Generate agent prompt additions
+        self.generate_agent_prompts()
 
         # Initialize stats tracking
         self.init_stats()
@@ -491,7 +491,7 @@ class TokenOptimizer:
         print(colorize("\n=== Optimization Complete ===", Colors.BOLD + Colors.GREEN))
         print("\nNext steps:")
         print("  1. Review generated files in ~/.openclaw/")
-        print("  2. Add system prompt rules from ~/.openclaw/prompts/")
+        print("  2. Add agent prompt rules from ~/.openclaw/prompts/")
         print("  3. Start Ollama: ollama serve")
         print("  4. Verify with: token-optimizer verify")
 
@@ -616,8 +616,8 @@ When in doubt: Try Haiku first.
                         f.write(content.strip())
                 print(colorize(f"  [CREATED] {filepath}", Colors.GREEN))
 
-    def generate_system_prompts(self):
-        """Generate system prompt additions for optimization."""
+    def generate_agent_prompts(self):
+        """Generate agent prompt additions for optimization."""
         prompts_dir = self.openclaw_dir / 'prompts'
         prompts_dir.mkdir(parents=True, exist_ok=True)
 
@@ -683,7 +683,7 @@ When in doubt: Try Haiku first.
         # Combined optimization prompt
         combined = f"""# TOKEN OPTIMIZATION RULES
 
-Add these rules to your agent's system prompt:
+Add these rules to your agent prompt:
 
 ---
 
@@ -711,7 +711,7 @@ Do not remove or modify unless you understand the cost implications.
             'OPTIMIZATION-RULES.md': combined
         }
 
-        print(colorize("\n--- Generating System Prompts ---", Colors.BOLD))
+        print(colorize("\n--- Generating Agent Prompts ---", Colors.BOLD))
 
         for filename, content in prompts.items():
             filepath = prompts_dir / filename
@@ -723,7 +723,7 @@ Do not remove or modify unless you understand the cost implications.
                         f.write(content.strip())
                 print(colorize(f"  [CREATED] {filepath}", Colors.GREEN))
 
-        print(colorize(f"\n[INFO] Add contents of {prompts_dir / 'OPTIMIZATION-RULES.md'} to your system prompt", Colors.CYAN))
+        print(colorize(f"\n[INFO] Add contents of {prompts_dir / 'OPTIMIZATION-RULES.md'} to your agent prompt", Colors.CYAN))
 
 
 def main():
