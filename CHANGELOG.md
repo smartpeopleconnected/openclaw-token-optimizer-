@@ -42,5 +42,5 @@
 - Session management optimization
 - Prompt caching
 - Budget controls and rate limits
-- Windows + Unix installers
+- Cross-platform CLI (Windows, macOS, Linux)
 - Verification tool

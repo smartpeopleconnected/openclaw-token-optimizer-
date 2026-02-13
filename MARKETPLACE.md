@@ -137,7 +137,7 @@ The default configuration prioritizes capability over cost - meaning you're burn
 - Prompt caching setup
 - Session initialization rules
 - Budget and rate limit controls
-- Windows and Unix installers
+- Cross-platform CLI (Windows, macOS, Linux)
 - Workspace templates
 - Verification tools
 - Ko-fi support integration

@@ -2,7 +2,7 @@
 
 **Reduce your AI costs by 97% - From $1,500+/month to under $50/month**
 
-[![Version](https://img.shields.io/badge/version-1.0.14-blue.svg)](https://github.com/smartpeopleconnected/openclaw-token-optimizer)
+[![Version](https://img.shields.io/badge/version-1.0.15-blue.svg)](https://github.com/smartpeopleconnected/openclaw-token-optimizer)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![OpenClaw](https://img.shields.io/badge/OpenClaw-Compatible-purple.svg)](https://openclaw.ai)
 [![Cost Savings](https://img.shields.io/badge/savings-97%25-brightgreen.svg)](https://github.com/smartpeopleconnected/openclaw-token-optimizer)
@@ -45,18 +45,6 @@ Token Optimizer applies four key optimizations that work together to slash your 
 
 ### Installation
 
-**Windows (PowerShell):**
-```powershell
-.\scripts\install.ps1
-```
-
-**macOS/Linux:**
-```bash
-chmod +x scripts/install.sh
-./scripts/install.sh
-```
-
-**Manual Python:**
 ```bash
 # Preview changes (safe dry-run with diff)
 python cli.py optimize --dry-run
@@ -193,42 +181,18 @@ Copy these rules into your agent prompt.
 - OpenClaw installed and configured
 - Ollama (optional, for free heartbeats)
 
-### Installing Ollama (Automated)
+### Installing Ollama (Optional)
 
-We provide a one-click setup script that installs Ollama, downloads the model, and configures auto-start:
-
-**Windows (PowerShell):**
-```powershell
-.\scripts\setup-ollama.ps1
-```
-
-**macOS/Linux:**
-```bash
-chmod +x scripts/setup-ollama.sh
-./scripts/setup-ollama.sh
-```
-
-**What the script does:**
-1. Checks system requirements (RAM, disk space)
-2. Installs Ollama automatically
-3. Downloads the recommended model (llama3.2:3b)
-4. Starts Ollama server
-5. Configures auto-start on boot
-6. Tests that everything works
-
-**System Requirements:**
-| Resource | Minimum | Recommended |
-|----------|---------|-------------|
-| RAM | 2 GB | 4 GB |
-| Disk | 1.5 GB | 3 GB |
-| GPU | Not required | Speeds up responses |
-
-**Manual Installation:**
-
-Download Ollama from [https://ollama.ai](https://ollama.ai) and follow their install instructions. Then:
+Ollama is only needed if you want free local heartbeats. Download from [https://ollama.ai](https://ollama.ai), then:
 ```bash
 ollama pull llama3.2:3b
 ollama serve
+```
+
+Or use the CLI to configure a different provider:
+```bash
+python cli.py setup-heartbeat --provider lmstudio
+python cli.py setup-heartbeat --provider none  # disable heartbeat
 ```
 
 ## File Structure
@@ -248,11 +212,8 @@ token-optimizer/
 |   +-- SOUL.md
 |   +-- USER.md
 |   +-- OPTIMIZATION-RULES.md
-+-- scripts/
-    +-- install.sh             # Unix installer
-    +-- install.ps1            # Windows installer
-    +-- setup-ollama.sh        # Ollama setup (Unix)
-    +-- setup-ollama.ps1       # Ollama setup (Windows)
++-- test/
+    +-- simulation_test.py     # Simulation tests
 ```
 
 ## Troubleshooting
