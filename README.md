@@ -2,7 +2,7 @@
 
 **Reduce your AI costs by 97% - From $1,500+/month to under $50/month**
 
-[![Version](https://img.shields.io/badge/version-1.0.15-blue.svg)](https://github.com/smartpeopleconnected/openclaw-token-optimizer)
+[![Version](https://img.shields.io/badge/version-1.0.17-blue.svg)](https://github.com/smartpeopleconnected/openclaw-token-optimizer)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![OpenClaw](https://img.shields.io/badge/OpenClaw-Compatible-purple.svg)](https://openclaw.ai)
 [![Cost Savings](https://img.shields.io/badge/savings-97%25-brightgreen.svg)](https://github.com/smartpeopleconnected/openclaw-token-optimizer)

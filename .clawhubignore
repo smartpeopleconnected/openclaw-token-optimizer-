@@ -13,3 +13,12 @@ nul
 
 # Info materials
 infomaterial/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Internal project files
+.claude/
+.clawhub/
+_ul

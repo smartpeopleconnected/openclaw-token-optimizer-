@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.0.17] - 2026-02-21
+
+### Security Improvements
+- **Removed all subprocess calls** - Replaced `subprocess.run` with `shutil.which` and HTTP health checks. No shell execution in the entire codebase.
+- **Removed non-utility files from repo** - Deleted marketing materials, install scripts, competitor analysis, and promotional content from the repository.
+- **Removed Unicode symbols** - Replaced non-ASCII characters in test output with ASCII equivalents.
+- **Excluded Python cache from publish** - Added `__pycache__/` and `*.pyc` to `.clawhubignore`.
+
+### Changed
+- Ollama model setup now provides manual instructions instead of auto-downloading.
+- Provider reachability checks use HTTP endpoints instead of CLI commands.
+- Cleaned up documentation references to removed files.
+
 ## [1.0.8] - 2026-02-12
 
 ### New Features
@@ -12,7 +25,7 @@
 ### Improvements
 - **Shared colors module** - Deduplicated color code from 3 files into `src/colors.py`.
 - **Version single source of truth** - All files read version from `src/__init__.py`. No more hardcoded version strings.
-- **Extended triggers** - Added 10 new search triggers for better marketplace discovery.
+- **Extended triggers** - Added 10 new search keywords for better search matching.
 - **Provider-aware verification** - `verify` checks the configured heartbeat provider instead of only Ollama.
 
 ### Fixes
@@ -23,7 +36,7 @@
 ## [1.0.7] - 2026-02-08
 
 ### Security Improvements
-- **Removed hidden HTML comment** from SKILL.md that was flagged in a ClawHub security review.
+- **Cleaned up SKILL.md** - Removed unnecessary HTML comment from SKILL.md.
 - **Dry-run is now the default** - running `optimizer.py` without flags shows a preview only. Use `--apply` to make actual changes. This prevents accidental config modifications.
 - **User confirmation before downloads** - `ollama pull` now asks for confirmation before downloading ~2GB model data.
 - **Existing files are no longer overwritten** - files in `~/.openclaw/prompts/` are skipped if they already exist, preserving user customizations.
@@ -42,5 +55,4 @@
 - Session management optimization
 - Prompt caching
 - Budget controls and rate limits
-- Cross-platform CLI (Windows, macOS, Linux)
 - Verification tool

@@ -76,6 +76,16 @@ logs/
 # Claude Code
 .claude/
 
+# Removed from repo (kept locally on OneDrive)
+marketing/
+scripts/
+skills/
+pdf/
+infomaterial/
+VIRAL_PROMPT.md
+*.url
+_ul
+
 # OpenClaw user data (don't commit user configs)
 ~/.openclaw/
 *.db

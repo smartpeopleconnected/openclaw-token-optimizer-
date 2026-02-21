@@ -7,7 +7,7 @@ Verifies optimization setup and estimates savings.
 import json
 import os
 import sys
-import subprocess
+import shutil
 import urllib.request
 from pathlib import Path
 from datetime import datetime
@@ -102,10 +102,13 @@ class OptimizationVerifier:
     def check_provider_reachable(self, provider: str, endpoint: str = None) -> bool:
         """Check if a heartbeat provider is reachable."""
         if provider == "ollama":
+            if shutil.which("ollama") is None:
+                return False
             try:
-                result = subprocess.run(['ollama', 'list'], capture_output=True, text=True, timeout=5)
-                return result.returncode == 0
-            except (subprocess.SubprocessError, FileNotFoundError):
+                req = urllib.request.Request("http://localhost:11434", method="GET")
+                urllib.request.urlopen(req, timeout=5)
+                return True
+            except Exception:
                 return False
         elif provider in ("lmstudio", "groq"):
             url = endpoint or ("http://localhost:1234" if provider == "lmstudio" else "https://api.groq.com")

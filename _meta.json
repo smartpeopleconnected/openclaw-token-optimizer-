@@ -1,6 +1,6 @@
 {
   "name": "token-optimizer",
-  "version": "1.0.15",
+  "version": "1.0.17",
   "description": "Reduce OpenClaw AI costs by 97% - From $1,500+/month to under $50/month",
   "author": {
     "name": "Smart People Connected",
@@ -31,5 +31,5 @@
     "platforms": ["windows", "macos", "linux"]
   },
   "created": "2026-02-04",
-  "updated": "2026-02-12"
+  "updated": "2026-02-21"
 }

@@ -70,7 +70,6 @@ Reuse prompts at 10% cost
 - SOUL.md & USER.md templates
 - Optimization rules for agent prompts
 - Verification and savings reports
-- Cross-platform CLI (Windows, macOS, Linux)
 
 ## Quick Start
 

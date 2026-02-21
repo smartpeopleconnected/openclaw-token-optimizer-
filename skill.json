@@ -1,6 +1,6 @@
 {
   "name": "token-optimizer",
-  "version": "1.0.15",
+  "version": "1.0.17",
   "summary": "Reduce OpenClaw AI costs by 97%. Haiku routing, free Ollama heartbeats, prompt caching, budget controls. $1,500/month to $50/month in 5 minutes.",
   "description": "Stop burning tokens! Slash your AI costs from $1,500+/month to under $50/month. Model routing (Haiku default), free Ollama heartbeats, lean session management, prompt caching, and budget controls. Works in 5 minutes.",
   "author": "smartpeopleconnected",

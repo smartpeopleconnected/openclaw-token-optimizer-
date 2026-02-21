@@ -8,7 +8,6 @@ import json
 import os
 import sys
 import shutil
-import subprocess
 import difflib
 import urllib.request
 from pathlib import Path
@@ -30,25 +29,25 @@ HEARTBEAT_PROVIDERS = {
         "endpoint": "http://localhost:11434",
         "default_model": "llama3.2:3b",
         "model_prefix": "ollama/",
-        "check_cmd": ["ollama", "list"],
+        "cli_name": "ollama",
     },
     "lmstudio": {
         "endpoint": "http://localhost:1234",
         "default_model": "llama3.2:3b",
         "model_prefix": "lmstudio/",
-        "check_cmd": None,
+        "cli_name": None,
     },
     "groq": {
         "endpoint": "https://api.groq.com",
         "default_model": "llama-3.2-3b-preview",
         "model_prefix": "groq/",
-        "check_cmd": None,
+        "cli_name": None,
     },
     "none": {
         "endpoint": None,
         "default_model": None,
         "model_prefix": "",
-        "check_cmd": None,
+        "cli_name": None,
     },
 }
 
@@ -80,13 +79,21 @@ def check_heartbeat_provider(provider: str) -> bool:
     if not info:
         return False
 
-    # Try CLI command first (ollama)
-    if info.get("check_cmd"):
-        try:
-            result = subprocess.run(info["check_cmd"], capture_output=True, text=True, timeout=5)
-            return result.returncode == 0
-        except (subprocess.SubprocessError, FileNotFoundError):
+    # Check if CLI tool is installed (e.g. ollama)
+    cli_name = info.get("cli_name")
+    if cli_name:
+        if shutil.which(cli_name) is None:
             return False
+        # CLI found, try reaching the HTTP endpoint too
+        endpoint = info.get("endpoint")
+        if endpoint:
+            try:
+                req = urllib.request.Request(endpoint, method="GET")
+                urllib.request.urlopen(req, timeout=5)
+                return True
+            except Exception:
+                return False
+        return True
 
     # Try HTTP endpoint
     endpoint = info.get("endpoint")
@@ -292,10 +299,13 @@ class TokenOptimizer:
 
     def check_ollama(self) -> bool:
         """Check if Ollama is installed and running."""
+        if shutil.which('ollama') is None:
+            return False
         try:
-            result = subprocess.run(['ollama', 'list'], capture_output=True, text=True, timeout=5)
-            return result.returncode == 0
-        except (subprocess.SubprocessError, FileNotFoundError):
+            req = urllib.request.Request("http://localhost:11434", method="GET")
+            urllib.request.urlopen(req, timeout=5)
+            return True
+        except Exception:
             return False
 
     def setup_heartbeat_provider(self, provider: str = "ollama", model: str = None, fallback: str = None) -> bool:
@@ -338,29 +348,12 @@ class TokenOptimizer:
         return True
 
     def _setup_ollama_model(self, model: str = None) -> bool:
-        """Check and optionally pull Ollama model."""
+        """Check Ollama model availability and provide instructions."""
         target_model = model or "llama3.2:3b"
-        try:
-            result = subprocess.run(['ollama', 'list'], capture_output=True, text=True)
-            model_base = target_model.split(":")[0]
-            if target_model not in result.stdout and model_base not in result.stdout:
-                if self.dry_run:
-                    print(colorize(f"[DRY-RUN] Would pull {target_model} model (~2GB)", Colors.YELLOW))
-                else:
-                    answer = input(colorize(
-                        f"[CONFIRM] Download {target_model} model (~2GB)? [y/N] ", Colors.CYAN
-                    )).strip().lower()
-                    if answer == 'y':
-                        print(colorize(f"[INFO] Pulling {target_model} model...", Colors.CYAN))
-                        subprocess.run(['ollama', 'pull', target_model], check=True)
-                        print(colorize("[SUCCESS] Model ready", Colors.GREEN))
-                    else:
-                        print(colorize(f"[SKIP] Model not downloaded. Run manually: ollama pull {target_model}", Colors.YELLOW))
-            else:
-                print(colorize(f"[OK] {model_base} model already available", Colors.GREEN))
-        except subprocess.SubprocessError as e:
-            print(colorize(f"[ERROR] Failed to pull model: {e}", Colors.RED))
-            return False
+        print(colorize(f"[OK] Ollama is installed and reachable", Colors.GREEN))
+        print(colorize(f"[INFO] Make sure the model is available:", Colors.CYAN))
+        print(f"    ollama pull {target_model}")
+        print(f"    ollama serve")
         return True
 
     def setup_ollama_heartbeat(self) -> bool:

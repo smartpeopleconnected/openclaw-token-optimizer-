@@ -364,10 +364,10 @@ def run_simulation():
     print(colorize("\n  Savings Breakdown:", Colors.BOLD))
 
     model_savings = (COSTS['sonnet']['input'] - COSTS['haiku']['input']) / COSTS['sonnet']['input'] * 100
-    print(f"    • Model Routing (Sonnet→Haiku):     {model_savings:.0f}% per token")
-    print(f"    • Heartbeat (Paid→Ollama):          100% (free)")
-    print(f"    • Context Reduction (50KB→2KB):     96% less tokens")
-    print(f"    • Prompt Caching:                   90% on repeated content")
+    print(f"    - Model Routing (Sonnet->Haiku):     {model_savings:.0f}% per token")
+    print(f"    - Heartbeat (Paid->Ollama):          100% (free)")
+    print(f"    - Context Reduction (50KB->2KB):     96% less tokens")
+    print(f"    - Prompt Caching:                   90% on repeated content")
 
     # Cleanup
     shutil.rmtree(test_dir)
