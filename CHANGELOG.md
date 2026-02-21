@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.18] - 2026-02-22
+
+### Security Improvements
+- **Removed `"target": "slack"` from heartbeat config** - The optimizer no longer sets a default notification target. Previously, enabling heartbeat could cause unintended Slack messages if the user had webhooks configured.
+- **`optimize` command now defaults to dry-run** - `python cli.py optimize` shows a preview. Use `--apply` to write changes. This matches the standalone `optimizer.py` behavior.
+- **`setup-heartbeat` command now defaults to dry-run** - `python cli.py setup-heartbeat` shows a preview. Use `--apply` to write changes.
+
+### Documentation
+- **Added "What This Tool Modifies" section** to SKILL.md and README.md, listing all paths under `~/.openclaw/` that may be written.
+- Updated all CLI examples to reflect the new `--apply` flag workflow.
+
 ## [1.0.17] - 2026-02-21
 
 ### Security Improvements

@@ -41,7 +41,6 @@
     "endpoint": "http://localhost:11434",
     "fallback": "none",
     "session": "main",
-    "target": "slack",
     "prompt": "Check: Any blockers, opportunities, or progress updates needed?",
     "$comment": "Free local LLM for heartbeats - supports ollama, lmstudio, groq, none"
   },

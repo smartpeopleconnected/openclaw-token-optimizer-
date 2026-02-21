@@ -2,7 +2,7 @@
 
 **Reduce your AI costs by 97% - From $1,500+/month to under $50/month**
 
-[![Version](https://img.shields.io/badge/version-1.0.17-blue.svg)](https://github.com/smartpeopleconnected/openclaw-token-optimizer)
+[![Version](https://img.shields.io/badge/version-1.0.18-blue.svg)](https://github.com/smartpeopleconnected/openclaw-token-optimizer)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![OpenClaw](https://img.shields.io/badge/OpenClaw-Compatible-purple.svg)](https://openclaw.ai)
 [![Cost Savings](https://img.shields.io/badge/savings-97%25-brightgreen.svg)](https://github.com/smartpeopleconnected/openclaw-token-optimizer)
@@ -41,16 +41,30 @@ Token Optimizer applies four key optimizations that work together to slash your 
 | Monthly | $70-90 | **$3-5** |
 | Yearly | $800+ | **$40-60** |
 
+## What This Tool Modifies
+
+All changes are written under `~/.openclaw/`. A backup is created before any modification.
+
+| Path | Purpose |
+|------|---------|
+| `~/.openclaw/openclaw.json` | Main OpenClaw config (model routing, heartbeat, budgets) |
+| `~/.openclaw/backups/` | Timestamped config backups (created automatically) |
+| `~/.openclaw/workspace/` | Template files (SOUL.md, USER.md, IDENTITY.md) |
+| `~/.openclaw/prompts/` | Agent prompt optimization rules |
+| `~/.openclaw/token-optimizer-stats.json` | Usage stats for savings reports |
+
+**Safe by default** - All commands run in dry-run (preview) mode. Pass `--apply` to write changes.
+
 ## Quick Start
 
 ### Installation
 
 ```bash
-# Preview changes (safe dry-run with diff)
-python cli.py optimize --dry-run
+# Preview changes (dry-run by default)
+python cli.py optimize
 
 # Apply changes
-python cli.py optimize
+python cli.py optimize --apply
 
 # Quick health check
 python cli.py health
@@ -103,26 +117,26 @@ python cli.py analyze
 
 Shows current configuration status, workspace file sizes, optimization opportunities, and estimated monthly savings.
 
-### Preview Changes (Dry Run with Diff)
+### Preview Changes (Dry Run - Default)
 ```bash
-python cli.py optimize --dry-run
+python cli.py optimize
 ```
 
 Shows a colored unified diff of what would change, without modifying anything.
 
 ### Apply Full Optimization
 ```bash
-python cli.py optimize
+python cli.py optimize --apply
 ```
 
 Applies all optimizations: model routing, heartbeat, caching, rate limits, workspace templates, and agent prompts.
 
 ### Apply Specific Optimizations
 ```bash
-python cli.py optimize --mode routing    # Model routing only
-python cli.py optimize --mode heartbeat  # Heartbeat only
-python cli.py optimize --mode caching    # Prompt caching only
-python cli.py optimize --mode limits     # Rate limits only
+python cli.py optimize --apply --mode routing    # Model routing only
+python cli.py optimize --apply --mode heartbeat  # Heartbeat only
+python cli.py optimize --apply --mode caching    # Prompt caching only
+python cli.py optimize --apply --mode limits     # Rate limits only
 ```
 
 ### Quick Health Check
@@ -134,11 +148,15 @@ Checks config exists, valid JSON, provider reachable, workspace lean, and budget
 
 ### Configure Heartbeat Provider
 ```bash
-python cli.py setup-heartbeat --provider ollama      # Default
-python cli.py setup-heartbeat --provider lmstudio     # LM Studio
-python cli.py setup-heartbeat --provider groq         # Groq cloud
-python cli.py setup-heartbeat --provider none         # Disable heartbeat
-python cli.py setup-heartbeat --provider groq --fallback ollama
+# Preview (dry-run by default)
+python cli.py setup-heartbeat --provider ollama
+
+# Apply changes
+python cli.py setup-heartbeat --provider ollama --apply
+python cli.py setup-heartbeat --provider lmstudio --apply
+python cli.py setup-heartbeat --provider groq --apply
+python cli.py setup-heartbeat --provider none --apply
+python cli.py setup-heartbeat --provider groq --fallback ollama --apply
 ```
 
 ### Rollback Configuration
@@ -154,9 +172,9 @@ python cli.py verify
 
 ### Disable Colors
 ```bash
-python cli.py --no-color optimize --dry-run
+python cli.py --no-color optimize
 # or
-NO_COLOR=1 python cli.py optimize --dry-run
+NO_COLOR=1 python cli.py optimize
 ```
 
 ## Configuration

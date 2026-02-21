@@ -71,6 +71,20 @@ Reuse prompts at 10% cost
 - Optimization rules for agent prompts
 - Verification and savings reports
 
+## What This Tool Modifies
+
+All changes are written under `~/.openclaw/`. A backup is created before any modification.
+
+| Path | Purpose |
+|------|---------|
+| `~/.openclaw/openclaw.json` | Main OpenClaw config (model routing, heartbeat, budgets) |
+| `~/.openclaw/backups/` | Timestamped config backups (created automatically) |
+| `~/.openclaw/workspace/` | Template files (SOUL.md, USER.md, IDENTITY.md) |
+| `~/.openclaw/prompts/` | Agent prompt optimization rules |
+| `~/.openclaw/token-optimizer-stats.json` | Usage stats for savings reports |
+
+**Safe by default** - All commands run in dry-run (preview) mode. Pass `--apply` to write changes.
+
 ## Quick Start
 
 ```bash
@@ -80,11 +94,11 @@ clawhub install token-optimizer
 # Analyze current setup
 python cli.py analyze
 
-# Preview changes (dry-run with diff)
-python cli.py optimize --dry-run
+# Preview changes (dry-run by default)
+python cli.py optimize
 
 # Apply all optimizations
-python cli.py optimize
+python cli.py optimize --apply
 
 # Verify setup
 python cli.py verify
@@ -92,8 +106,11 @@ python cli.py verify
 # Quick health check
 python cli.py health
 
-# Configure heartbeat provider (ollama, lmstudio, groq, none)
+# Configure heartbeat provider (preview)
 python cli.py setup-heartbeat --provider ollama
+
+# Configure heartbeat provider (apply)
+python cli.py setup-heartbeat --provider ollama --apply
 
 # List and restore backups
 python cli.py rollback --list

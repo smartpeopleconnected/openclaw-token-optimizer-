@@ -191,7 +191,6 @@ class TokenOptimizer:
                 "every": "1h",
                 "model": "ollama/llama3.2:3b",
                 "session": "main",
-                "target": "slack",
                 "prompt": "Check: Any blockers, opportunities, or progress updates needed?"
             },
             "rate_limits": {

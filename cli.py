@@ -45,9 +45,9 @@ def main():
         help='Optimization mode (default: full)'
     )
     optimize_parser.add_argument(
-        '--dry-run',
+        '--apply',
         action='store_true',
-        help='Show what would be done without making changes'
+        help='Apply changes (default is dry-run preview)'
     )
 
     # Verify command
@@ -77,6 +77,11 @@ def main():
         choices=['ollama', 'lmstudio', 'groq', 'none'],
         default=None,
         help='Fallback provider if primary is unavailable'
+    )
+    heartbeat_parser.add_argument(
+        '--apply',
+        action='store_true',
+        help='Apply changes (default is dry-run preview)'
     )
 
     # Rollback command
@@ -122,7 +127,11 @@ def main():
 
     elif args.command == 'optimize':
         from src.optimizer import TokenOptimizer
-        optimizer = TokenOptimizer(dry_run=args.dry_run)
+        dry_run = not args.apply
+        if dry_run:
+            from src.colors import Colors, colorize
+            print(colorize("[DRY-RUN] Preview mode. Use --apply to make changes.\n", Colors.YELLOW))
+        optimizer = TokenOptimizer(dry_run=dry_run)
         optimizer.optimize_mode(args.mode)
         return 0
 
@@ -132,7 +141,11 @@ def main():
 
     elif args.command == 'setup-heartbeat':
         from src.optimizer import TokenOptimizer
-        optimizer = TokenOptimizer()
+        from src.colors import Colors, colorize
+        dry_run = not args.apply
+        if dry_run:
+            print(colorize("[DRY-RUN] Preview mode. Use --apply to make changes.\n", Colors.YELLOW))
+        optimizer = TokenOptimizer(dry_run=dry_run)
         optimizer.setup_heartbeat_provider(
             provider=args.provider,
             model=args.model,
